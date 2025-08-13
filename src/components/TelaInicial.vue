@@ -43,14 +43,24 @@ export default {
 
 <template>
   <div class="app" style="display:flex; flex-direction:column; gap:16px;">
-    <div class="h1">Bem vindo! Esse é o {{ titulo }}!</div>
+    <div class="h1">
+      Bem vindo! Esse é o {{ titulo }}!
+    </div>
 
-    <p v-if="carregando" class="small">Carregando informações do jogo…</p>
-    <p v-else-if="erro" class="small" style="color:#fca5a5;">{{ erro }}</p>
-    <p v-else>
-      <h3>Nesse jogo você vai irá aprender sobre os ciclos da água!</h3>
-      Ele tem <strong>{{ etapasCount }}</strong> etapas. Arraste cada descrição para o alvo correto.
+    <p v-if="carregando" class="small">
+      Carregando informações do jogo…
     </p>
+    <p v-else-if="erro" class="small" style="color:#fca5a5;">
+      {{ erro }}
+    </p>
+    <div v-else>
+      <h3>
+        Nesse jogo você vai irá aprender sobre os ciclos da água!
+      </h3>
+      <p>
+        Ele tem <strong>{{ etapasCount }}</strong> etapas. Arraste cada descrição para o alvo correto.
+      </p>
+    </div>
 
     <div style="display:flex; gap:8px; align-items:center; flex-wrap: wrap;">
       <button class="botao" @click="iniciar">Iniciar Jogo</button>
