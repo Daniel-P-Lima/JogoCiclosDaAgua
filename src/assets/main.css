@@ -1,14 +1,16 @@
 :root {
-  --ok: #16a34a;
-  --bad: #dc2626;
+  --bom: #16a34a;
+  --ruim: #dc2626;
   --muted: #6b7280;
   --bg: #0b1220;
   --card: #0f172a;
   --surface: #111827;
 }
+
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   font-family:
@@ -23,31 +25,36 @@ body {
   background: linear-gradient(120deg, #0b1220, #111827);
   color: #e5e7eb;
 }
+
 .app {
   max-width: 1000px;
   margin: 40px auto;
   padding: 0 16px;
 }
-.header {
+
+.cabecalho {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
 }
+
 .h1 {
   font-size: 28px;
   font-weight: 700;
 }
-.score {
+
+.pontuacao {
   color: #a7f3d0;
   font-weight: 600;
 }
 
-.board {
+.campo {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
+
 .zone,
 .pool,
 .done {
@@ -57,11 +64,12 @@ body {
   padding: 14px;
 }
 
-.targets {
+.alvos {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }
+
 .dropzone {
   border: 2px dashed rgba(255, 255, 255, 0.15);
   border-radius: 12px;
@@ -75,7 +83,8 @@ body {
   border-color: #60a5fa;
   background: rgba(59, 130, 246, 0.08);
 }
-.zone-title {
+
+.zonaTitulo {
   font-weight: 700;
   margin-bottom: 8px;
 }
@@ -84,6 +93,7 @@ body {
   display: grid;
   gap: 10px;
 }
+
 .card {
   background: var(--card);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -98,20 +108,24 @@ body {
     border-color 0.15s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
+
 .card:active {
   cursor: grabbing;
   transform: scale(0.98);
 }
+
 .card.locked {
   cursor: default;
   background: rgba(22, 163, 74, 0.1);
   border-color: rgba(22, 163, 74, 0.4);
 }
-.card.bad {
+
+.card.ruim {
   animation: shake 0.18s linear 2;
   border-color: rgba(220, 38, 38, 0.6);
   background: rgba(220, 38, 38, 0.06);
 }
+
 @keyframes shake {
   0% {
     transform: translateX(0);
@@ -129,31 +143,45 @@ body {
     transform: translateX(0);
   }
 }
+
 .meta {
   font-size: 12px;
   color: var(--muted);
   margin-top: 6px;
 }
 
-.footer {
+.rodape {
   margin-top: 16px;
   display: flex;
   gap: 8px;
   align-items: center;
   flex-wrap: wrap;
 }
-.btn {
+
+.botao {
   background: #2563eb;
   color: white;
   border: none;
   border-radius: 10px;
   padding: 10px 14px;
   font-weight: 600;
+  width: 8rem;
+  height: 3rem;
   cursor: pointer;
 }
-.btn.secondary {
+
+.botao:hover {
+  background: #3874f6;
+}
+
+.botao.secundario {
   background: #374151;
 }
+
+.botao.secundario:hover {
+  background: #4c525d;
+}
+
 .final {
   background: rgba(22, 163, 74, 0.08);
   border: 1px solid rgba(22, 163, 74, 0.25);
@@ -161,6 +189,7 @@ body {
   padding: 16px;
   margin-top: 12px;
 }
+
 .small {
   font-size: 13px;
   color: var(--muted);
