@@ -1,51 +1,51 @@
 <script>
 export default {
+  name: 'TelaInicial',
   data() {
     return {
-      botaoClicado: false,
+      titulo: 'Bem-vindo',
+      etapasCount: 0,
+      erro: null,
+      carregando: true
     }
   },
   methods: {
-    clicarBotao() {
-      console.log('True')
-      this.botaoClicado = true
-      this.$router.push('/jogo')
+    async carregarPreview() {
+      try {
+        const res = await fetch('/jogo.json')
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        const data = await res.json()
+        this.titulo = data.titulo || 'Jogo'
+        this.etapasCount = Array.isArray(data.etapas) ? data.etapas.length : 0
+      } catch (e) {
+        this.erro = 'Não foi possível carregar o jogo. Verifique o arquivo /public/jogo.json.'
+        console.error(e)
+      } finally {
+        this.carregando = false
+      }
     },
+    iniciar() {
+      this.$router.push({ name: 'Jogo' })
+    }
   },
+  mounted() {
+    this.carregarPreview()
+  }
 }
 </script>
 
 <template>
-    <header class="cabecalho">
-        
-        <h1>Bem vindo a Aventura das Gotas</h1>
-        <p>Esse jogo vai te ajudar a entender melhor sobre os ciclos da água!</p>
-        <p>Clique no botão "Jogar" para iniciar o jogo</p>
-        
-        <button class="botaoCabecalho" @click="clicarBotao()">Jogar</button>
-    </header>
+  <div class="app" style="display:flex; flex-direction:column; gap:16px;">
+    <div class="h1">{{ titulo }}</div>
+
+    <p v-if="carregando" class="small">Carregando informações do jogo…</p>
+    <p v-else-if="erro" class="small" style="color:#fca5a5;">{{ erro }}</p>
+    <p v-else>
+      Este jogo tem <strong>{{ etapasCount }}</strong> etapas. Arraste cada descrição para o alvo correto.
+    </p>
+
+    <div style="display:flex; gap:8px; align-items:center; flex-wrap: wrap;">
+      <button class="btn" @click="iniciar">Iniciar Jogo</button>
+    </div>
+  </div>
 </template>
-
-
-<style @scoped>
-.cabecalho {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.botaoCabecalho {
-    background-color: #0077B6;
-    color: #caf0f8;
-    border: none;
-    width: 5rem;
-    height: 2.5rem;
-    border-radius: 3px;
-}
-
-.botaoCabecalho:hover {
-    cursor: pointer;
-    background-color: #0096C7;
-}
-</style>
