@@ -2,10 +2,10 @@
 
 Um jogo educativo sobre o **ciclo da água**, pensado para crianças, construído com **Vue 3** e **Vite**. O objetivo é ensinar, de forma lúdica, as etapas do ciclo (evaporação, condensação, precipitação e infiltração/escoamento) por meio de interações simples, elementos visuais e feedbacks positivos.
 
-**O que é o projeto**
-**Como está estruturado**
-**como rodar**
-**Dificuldades**
+- **O que é o projeto**
+- **Como está estruturado**
+- **Como rodar**
+- **Dificuldades**
 
 ---
 
