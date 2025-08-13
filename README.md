@@ -9,7 +9,7 @@ Um jogo educativo sobre o **ciclo da água**, pensado para crianças, construíd
 
 ---
 
-## ✨ Destaques do projeto
+## Destaques do projeto
 
 - **Educação + jogo**: conteúdo de ciências convertido em mecânicas simples e visuais adequados ao público infantil.
 - **Vue 3 + Vite**
@@ -17,7 +17,7 @@ Um jogo educativo sobre o **ciclo da água**, pensado para crianças, construíd
 
 ---
 
-## 🧭 Estrutura (visão geral)
+## Estrutura (visão geral)
 
 ```
 .
@@ -38,7 +38,7 @@ Um jogo educativo sobre o **ciclo da água**, pensado para crianças, construíd
 ```
 ---
 
-## 🚀 Como rodar localmente
+## Como rodar localmente
 
 ### Pré‑requisitos
 - **Node.js 18+** (ou LTS mais recente)
@@ -70,8 +70,7 @@ npm run preview
 ## Dificuldades 
 - Implementação do drag-and-drop
 
-## 👤 Autor
-
-Feito por **Daniel Pereira Lima**.  
+## Autor
+**Daniel Pereira Lima**.  
 
 
