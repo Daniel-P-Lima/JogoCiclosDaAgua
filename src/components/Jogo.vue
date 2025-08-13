@@ -25,7 +25,7 @@ export default {
         }
     },
     methods: {
-        async CarregaJogo() { // Carrega o jogo.json
+        async carregaJogo() { // Carrega o jogo.json
             const res = await fetch('/jogo.json')
             const data = await res.json()
 
@@ -110,7 +110,7 @@ export default {
         }
     },
     mounted() {
-        this.CarregaJogo()
+        this.carregaJogo()
     }
 }
 </script>
@@ -118,13 +118,16 @@ export default {
 <template>
     <div class="app">
         <div class="cabecalho">
-            <div class="h1">{{ titulo }}</div>
-            <div class="pontuacao">Pontuação: {{ pontuacao }} / {{ total }}</div>
+            <div class="h1">
+                {{ titulo }}
+            </div>
+            <div class="pontuacao">
+                Pontuação: {{ pontuacao }} / {{ total }}
+            </div>
         </div>
 
         <div class="campo">
-            <!-- Alvos -->
-            <div class="zone">
+            <div class="zona">
                 <div class="zonaTitulo">
                     <h3>
                         Arraste as descrições para o alvo correto
@@ -132,7 +135,9 @@ export default {
                 </div>
                 <div class="alvos">
                     <div v-for="t in alvos" :key="t.id">
-                        <div class="zonaTitulo">{{ t.nome }}</div>
+                        <div class="zonaTitulo">
+                            {{ t.nome }}
+                        </div>
                         <div class="dropzone" :class="{ hover: hoverTarget === t.id }"
                             @dragover="onDragOver($event, t.id)" @dragleave="onDragLeave" @drop="onDrop($event, t.id)">
                             <div class="cards">
@@ -146,19 +151,25 @@ export default {
                     </div>
                 </div>
 
-                <!-- Final -->
                 <div v-if="terminou" class="final">
-                    <div style="font-weight:700; margin-bottom:4px;">Parabéns! Você terminou o jogo! </div>
-                    <div class="small">Sua pontuação final: {{ pontuacao }} de {{ total }}</div>
+                    <div style="font-weight:700; margin-bottom:4px;">
+                        Parabéns! Você terminou o jogo! 
+                    </div>
+                    <div class="small">
+                        Sua pontuação final: {{ pontuacao }} de {{ total }}
+                    </div>
                 </div>
 
                 <div class="rodape">
-                    <button class="botao" @click="reiniciaJogo">Reiniciar</button>
-                    <button class="botao secundario" @click="irTelaInicial">Voltar</button>
+                    <button class="botao" @click="reiniciaJogo">
+                        Reiniciar
+                    </button>
+                    <button class="botao secundario" @click="irTelaInicial">
+                        Voltar
+                    </button>
                 </div>
             </div>
 
-            <!-- Pool -->
             <div class="pool" @dragover.prevent @drop="returnToPool">
                 <div class="zonaTitulo">Cartas</div>
                 <div class="cards">
@@ -173,11 +184,97 @@ export default {
 </template>
 
 <style scoped>
+.zona,
+.pool,
+.done {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.dropzone {
+  border: 2px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 12px;
+  min-height: 96px;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.dropzone.hover {
+  border-color: #60a5fa;
+  background: rgba(59, 130, 246, 0.08);
+}
+
+.pontuacao {
+  color: #a7f3d0;
+  font-weight: 600;
+}
+
+.alvos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.campo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
 .zonaTitulo {
-    margin-bottom: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
 }
 
 .alvos {
     margin-bottom: 2rem;
+}
+
+.cards {
+  display: grid;
+  gap: 10px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px;
+  cursor: grab;
+  user-select: none;
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.card:active {
+  cursor: grabbing;
+  transform: scale(0.98);
+}
+
+.card.locked {
+  cursor: default;
+  background: rgba(22, 163, 74, 0.1);
+  border-color: rgba(22, 163, 74, 0.4);
+}
+
+.card.ruim {
+  animation: shake 0.18s linear 2;
+  border-color: rgba(220, 38, 38, 0.6);
+  background: rgba(220, 38, 38, 0.06);
 }
 </style>
